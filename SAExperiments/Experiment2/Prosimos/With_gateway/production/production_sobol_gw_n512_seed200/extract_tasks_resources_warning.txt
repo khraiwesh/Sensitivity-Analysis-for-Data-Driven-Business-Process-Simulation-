@@ -1,0 +1,11 @@
+TASK–RESOURCE PARAMETER EXTRACTION WARNING
+-----------------------------------------
+Total task–resource distributions: 146
+
+Fixed ('fix') distributions ignored: 54
+Percentage fixed:                   36.99%
+
+Reason:
+  Fixed ('fix') task–resource distributions contain no stochastic
+  variability and are therefore left as-is and excluded from sensitivity analysis.
+

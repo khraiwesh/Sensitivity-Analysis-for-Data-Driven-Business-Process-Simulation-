@@ -1,0 +1,11 @@
+dataset,gw,n_groups,n_seeds,sizes,smallest_stable_N
+2012,with,6,3,"[512, 1024, 2048]",not reached
+2012,without,5,3,"[512, 1024, 2048]",2048
+2013,with,6,3,"[512, 1024, 2048]",2048
+2013,without,5,3,"[512, 1024, 2048]",512
+2017,with,6,3,"[512, 1024, 2048]",not reached
+2017,without,5,3,"[512, 1024, 2048]",512
+datamining,with,6,3,"[512, 1024, 2048]",not reached
+datamining,without,5,3,"[512, 1024, 2048]",512
+production,with,6,3,"[512, 1024, 2048]",not reached
+production,without,5,3,"[512, 1024, 2048]",not reached

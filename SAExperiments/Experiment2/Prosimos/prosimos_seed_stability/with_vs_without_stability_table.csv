@@ -1,0 +1,6 @@
+Dataset,With gateways,Without gateways,Effect of removing GW
+BPIC2012,0.615,0.778,↑ improves
+BPIC2013,0.941,1.0,↑ slight improvement
+BPIC2017,0.97,1.0,↑ slight improvement
+Production,0.837,0.867,↑ slight improvement
+Datamining,0.956,1.0,↑ slight improvement

@@ -1,0 +1,2 @@
+model,seed,avg_cycle_time_sec,avg_waiting_time_sec,avg_processing_time_sec,throughput
+RC,5,8710.06,,,3000

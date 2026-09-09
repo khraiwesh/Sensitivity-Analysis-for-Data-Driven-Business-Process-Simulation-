@@ -1,0 +1,11 @@
+dataset,method,sample_size,parameter,mean_value,reference_rank
+production,morris,512,AC,6643012.2065501595,5
+production,morris,512,AD,7301114.830287445,4
+production,morris,512,RC,19446610.584806528,2
+production,morris,512,RN,20430227.76816225,1
+production,morris,512,TR,7974747.113093115,3
+production,sobol,2048,AC,0.29833450064339656,5
+production,sobol,2048,AD,1.3377959557700017,2
+production,sobol,2048,RC,0.8244996942184545,3
+production,sobol,2048,RN,1.6767731000277462,1
+production,sobol,2048,TR,0.4596015757217983,4

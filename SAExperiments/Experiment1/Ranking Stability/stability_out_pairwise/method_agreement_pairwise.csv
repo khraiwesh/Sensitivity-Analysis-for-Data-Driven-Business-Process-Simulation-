@@ -1,0 +1,6 @@
+dataset,n_concordant,n_pairs_compared,n_pairs_total,agreement_morris_vs_sobol,n_params_compared,params_excluded_from_comparison
+2012,7,10,10,0.7,5,none
+2013_cycle_time,9,10,10,0.9,5,none
+2017,9,10,10,0.9,5,none
+production,8,10,10,0.8,5,none
+datamining,10,10,10,1.0,5,none

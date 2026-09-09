@@ -1,0 +1,28 @@
+# Python venv
+backend/venv/
+
+# Node modules
+frontend/node_modules/
+
+# General OS junk
+.DS_Store
+Thumbs.db
+
+# output files
+output/
+
+# Python cache
+__pycache__/
+**/__pycache__/
+*.pyc
+
+# Docker images
+docker_prebuilt_images/
+
+# Raw intermediate experiment artifacts (regenerable sample/config chunk
+# dumps, ~100GB) - not final results, excluded to keep repo size manageable.
+# See README.md "Repository Contents (SAExperiments)" section.
+SAExperiments/**/*.json
+
+# Individual file exceeds GitHub's 100MB per-file limit
+SAExperiments/DetailedRunsPerDatasets/Final_datamining (2).zip

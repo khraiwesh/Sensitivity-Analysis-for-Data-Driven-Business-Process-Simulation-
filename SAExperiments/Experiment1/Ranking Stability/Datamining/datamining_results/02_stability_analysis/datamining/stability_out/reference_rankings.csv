@@ -1,0 +1,11 @@
+dataset,method,sample_size,parameter,mean_value,reference_rank
+datamining,morris,512,AC,40424.62818174775,2
+datamining,morris,512,AD,23412.91894306136,3
+datamining,morris,512,RC,122039.22185208864,1
+datamining,morris,512,RN,7185.62652491519,4
+datamining,morris,512,TR,4847.652021771451,5
+datamining,sobol,2048,AC,0.09879528068913211,2
+datamining,sobol,2048,AD,0.02785841837799093,3
+datamining,sobol,2048,RC,0.9146928610658563,1
+datamining,sobol,2048,RN,0.004493301377058333,4
+datamining,sobol,2048,TR,0.0021586390009652665,5

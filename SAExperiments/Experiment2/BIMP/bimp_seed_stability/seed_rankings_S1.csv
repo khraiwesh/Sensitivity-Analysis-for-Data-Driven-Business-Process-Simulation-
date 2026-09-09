@@ -1,0 +1,173 @@
+dataset,gw,n_samples,seed,group,rank
+2012,with,512,100,Arrival Calendar,6.0
+2012,with,512,100,Arrival Distribution,3.0
+2012,with,512,100,Gateways,4.0
+2012,with,512,100,Resource Calendars,5.0
+2012,with,512,100,Resource Numbers,1.0
+2012,with,512,100,Tasks and Resources Distributions,2.0
+2012,with,512,200,Arrival Calendar,4.0
+2012,with,512,200,Arrival Distribution,6.0
+2012,with,512,200,Gateways,1.0
+2012,with,512,200,Resource Calendars,5.0
+2012,with,512,200,Resource Numbers,2.0
+2012,with,512,200,Tasks and Resources Distributions,3.0
+2012,with,512,300,Arrival Calendar,6.0
+2012,with,512,300,Arrival Distribution,4.0
+2012,with,512,300,Gateways,3.0
+2012,with,512,300,Resource Calendars,1.0
+2012,with,512,300,Resource Numbers,5.0
+2012,with,512,300,Tasks and Resources Distributions,2.0
+2012,with,1024,200,Arrival Calendar,6.0
+2012,with,1024,200,Arrival Distribution,5.0
+2012,with,1024,200,Gateways,1.0
+2012,with,1024,200,Resource Calendars,4.0
+2012,with,1024,200,Resource Numbers,3.0
+2012,with,1024,200,Tasks and Resources Distributions,2.0
+2012,with,1024,300,Arrival Calendar,6.0
+2012,with,1024,300,Arrival Distribution,3.0
+2012,with,1024,300,Gateways,5.0
+2012,with,1024,300,Resource Calendars,1.0
+2012,with,1024,300,Resource Numbers,4.0
+2012,with,1024,300,Tasks and Resources Distributions,2.0
+2012,with,2048,100,Arrival Calendar,6.0
+2012,with,2048,100,Arrival Distribution,3.0
+2012,with,2048,100,Gateways,4.0
+2012,with,2048,100,Resource Calendars,5.0
+2012,with,2048,100,Resource Numbers,2.0
+2012,with,2048,100,Tasks and Resources Distributions,1.0
+2012,with,2048,200,Arrival Calendar,6.0
+2012,with,2048,200,Arrival Distribution,4.0
+2012,with,2048,200,Gateways,2.0
+2012,with,2048,200,Resource Calendars,5.0
+2012,with,2048,200,Resource Numbers,1.0
+2012,with,2048,200,Tasks and Resources Distributions,3.0
+2012,with,2048,300,Arrival Calendar,6.0
+2012,with,2048,300,Arrival Distribution,3.0
+2012,with,2048,300,Gateways,5.0
+2012,with,2048,300,Resource Calendars,1.0
+2012,with,2048,300,Resource Numbers,2.0
+2012,with,2048,300,Tasks and Resources Distributions,4.0
+2012,without,512,200,Arrival Calendar,4.0
+2012,without,512,200,Arrival Distribution,5.0
+2012,without,512,200,Resource Calendars,3.0
+2012,without,512,200,Resource Numbers,1.0
+2012,without,512,200,Tasks and Resources Distributions,2.0
+2012,without,512,300,Arrival Calendar,5.0
+2012,without,512,300,Arrival Distribution,1.0
+2012,without,512,300,Resource Calendars,4.0
+2012,without,512,300,Resource Numbers,3.0
+2012,without,512,300,Tasks and Resources Distributions,2.0
+2012,without,1024,100,Arrival Calendar,5.0
+2012,without,1024,100,Arrival Distribution,2.0
+2012,without,1024,100,Resource Calendars,3.0
+2012,without,1024,100,Resource Numbers,4.0
+2012,without,1024,100,Tasks and Resources Distributions,1.0
+2012,without,1024,200,Arrival Calendar,5.0
+2012,without,1024,200,Arrival Distribution,4.0
+2012,without,1024,200,Resource Calendars,1.0
+2012,without,1024,200,Resource Numbers,2.0
+2012,without,1024,200,Tasks and Resources Distributions,3.0
+2012,without,1024,300,Arrival Calendar,5.0
+2012,without,1024,300,Arrival Distribution,1.0
+2012,without,1024,300,Resource Calendars,4.0
+2012,without,1024,300,Resource Numbers,2.0
+2012,without,1024,300,Tasks and Resources Distributions,3.0
+2012,without,2048,200,Arrival Calendar,5.0
+2012,without,2048,200,Arrival Distribution,4.0
+2012,without,2048,200,Resource Calendars,1.0
+2012,without,2048,200,Resource Numbers,2.0
+2012,without,2048,200,Tasks and Resources Distributions,3.0
+2012,without,2048,300,Arrival Calendar,5.0
+2012,without,2048,300,Arrival Distribution,3.0
+2012,without,2048,300,Resource Calendars,4.0
+2012,without,2048,300,Resource Numbers,1.0
+2012,without,2048,300,Tasks and Resources Distributions,2.0
+2017,with,512,100,Arrival Calendar,6.0
+2017,with,512,100,Arrival Distribution,4.0
+2017,with,512,100,Gateways,3.0
+2017,with,512,100,Resource Calendars,2.0
+2017,with,512,100,Resource Numbers,5.0
+2017,with,512,100,Tasks and Resources Distributions,1.0
+2017,with,512,200,Arrival Calendar,6.0
+2017,with,512,200,Arrival Distribution,3.0
+2017,with,512,200,Gateways,5.0
+2017,with,512,200,Resource Calendars,4.0
+2017,with,512,200,Resource Numbers,1.0
+2017,with,512,200,Tasks and Resources Distributions,2.0
+2017,with,512,300,Arrival Calendar,6.0
+2017,with,512,300,Arrival Distribution,3.0
+2017,with,512,300,Gateways,5.0
+2017,with,512,300,Resource Calendars,1.0
+2017,with,512,300,Resource Numbers,4.0
+2017,with,512,300,Tasks and Resources Distributions,2.0
+2017,with,1024,100,Arrival Calendar,6.0
+2017,with,1024,100,Arrival Distribution,4.0
+2017,with,1024,100,Gateways,5.0
+2017,with,1024,100,Resource Calendars,1.0
+2017,with,1024,100,Resource Numbers,3.0
+2017,with,1024,100,Tasks and Resources Distributions,2.0
+2017,with,1024,200,Arrival Calendar,6.0
+2017,with,1024,200,Arrival Distribution,1.0
+2017,with,1024,200,Gateways,2.0
+2017,with,1024,200,Resource Calendars,5.0
+2017,with,1024,200,Resource Numbers,4.0
+2017,with,1024,200,Tasks and Resources Distributions,3.0
+2017,with,1024,300,Arrival Calendar,6.0
+2017,with,1024,300,Arrival Distribution,4.0
+2017,with,1024,300,Gateways,5.0
+2017,with,1024,300,Resource Calendars,1.0
+2017,with,1024,300,Resource Numbers,3.0
+2017,with,1024,300,Tasks and Resources Distributions,2.0
+2017,with,2048,100,Arrival Calendar,6.0
+2017,with,2048,100,Arrival Distribution,5.0
+2017,with,2048,100,Gateways,4.0
+2017,with,2048,100,Resource Calendars,1.0
+2017,with,2048,100,Resource Numbers,2.0
+2017,with,2048,100,Tasks and Resources Distributions,3.0
+2017,with,2048,200,Arrival Calendar,6.0
+2017,with,2048,200,Arrival Distribution,3.0
+2017,with,2048,200,Gateways,4.0
+2017,with,2048,200,Resource Calendars,5.0
+2017,with,2048,200,Resource Numbers,1.0
+2017,with,2048,200,Tasks and Resources Distributions,2.0
+2017,with,2048,300,Arrival Calendar,6.0
+2017,with,2048,300,Arrival Distribution,4.0
+2017,with,2048,300,Gateways,5.0
+2017,with,2048,300,Resource Calendars,1.0
+2017,with,2048,300,Resource Numbers,3.0
+2017,with,2048,300,Tasks and Resources Distributions,2.0
+2017,without,512,100,Arrival Calendar,5.0
+2017,without,512,100,Arrival Distribution,3.0
+2017,without,512,100,Resource Calendars,2.0
+2017,without,512,100,Resource Numbers,4.0
+2017,without,512,100,Tasks and Resources Distributions,1.0
+2017,without,512,200,Arrival Calendar,4.0
+2017,without,512,200,Arrival Distribution,5.0
+2017,without,512,200,Resource Calendars,3.0
+2017,without,512,200,Resource Numbers,1.0
+2017,without,512,200,Tasks and Resources Distributions,2.0
+2017,without,512,300,Arrival Calendar,5.0
+2017,without,512,300,Arrival Distribution,1.0
+2017,without,512,300,Resource Calendars,4.0
+2017,without,512,300,Resource Numbers,3.0
+2017,without,512,300,Tasks and Resources Distributions,2.0
+2017,without,1024,100,Arrival Calendar,5.0
+2017,without,1024,100,Arrival Distribution,3.0
+2017,without,1024,100,Resource Calendars,4.0
+2017,without,1024,100,Resource Numbers,2.0
+2017,without,1024,100,Tasks and Resources Distributions,1.0
+2017,without,1024,200,Arrival Calendar,5.0
+2017,without,1024,200,Arrival Distribution,4.0
+2017,without,1024,200,Resource Calendars,1.0
+2017,without,1024,200,Resource Numbers,2.0
+2017,without,1024,200,Tasks and Resources Distributions,3.0
+2017,without,1024,300,Arrival Calendar,5.0
+2017,without,1024,300,Arrival Distribution,2.0
+2017,without,1024,300,Resource Calendars,4.0
+2017,without,1024,300,Resource Numbers,1.0
+2017,without,1024,300,Tasks and Resources Distributions,3.0
+2017,without,2048,200,Arrival Calendar,5.0
+2017,without,2048,200,Arrival Distribution,4.0
+2017,without,2048,200,Resource Calendars,1.0
+2017,without,2048,200,Resource Numbers,2.0
+2017,without,2048,200,Tasks and Resources Distributions,3.0
