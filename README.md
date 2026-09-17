@@ -1,651 +1,890 @@
-# BPS Sensitivity Analysis Tool
+# Sensitivity Analysis for Data-Driven Business Process Simulation
 
-Please refer to the following link to read the full thesis:
-https://drive.google.com/file/d/181ZLqbQ1oLn72g--1Dfp4H08hHyRK0lQ/view?usp=sharing
+This repository contains the implementation and experimental artifacts for applying global sensitivity analysis to data-driven Business Process Simulation (BPS) models.
+
+The tool integrates model discovery, parameter sampling and conversion, process simulation, sensitivity analysis, and visualization into a unified workflow. It supports both **Sobol** and **Morris** sensitivity analysis and enables analysis at the parameter-group and individual-parameter levels.
+
+The repository also contains the scripts, configurations, and processed results used for the experiments reported in the accompanying paper.
+
+---
 
 ## Installation
 
-There are two ways to install and run the BPS Sensitivity Analysis Tool: using Docker (recommended) or local installation.
+There are two ways to install and run the BPS Sensitivity Analysis Tool:
 
-### Option 1: Docker Installation (Recommended)
+1. **Docker installation (recommended)**
+2. **Local installation**
 
-#### Option 1A: Using Pre-built Docker Images
+---
 
-##### Prerequisites
-- Docker Desktop installed on your system
+## Option 1: Docker Installation
 
-##### Steps
-
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/khraiwesh/Sensitivity-Analysis-for-Data-Driven-Business-Process-Simulation-.git bps_sensitivity_analysis_tool_final
-   cd bps_sensitivity_analysis_tool_final
-   ```
-
-2. Navigate to the docker_prebuilt folder:
-   ```bash
-   cd docker_prebuilt
-   ```
-
-3. Pull the Docker images:
-   ```bash
-   docker pull eksicek/bps_sensitivity_analysis_backend_image_final:latest
-   docker pull eksicek/bps_sensitivity_analysis_frontend_image_final:latest
-   ```
-
-4. Start the containers:
-   ```bash
-   docker compose -f docker-compose.bind.yml --env-file .env up -d
-   ```
-
-5. Access the application:
-   - Frontend: http://localhost:5173
-   - Backend API: http://localhost:5000
-   - Output files will be stored in `docker_prebuilt/output/`
-
-
-#### Option 1B: Building Docker Images from Source
-
-##### Prerequisites
-- Docker Desktop installed and running
-- Docker Hub account (for pushing images)
-
-##### Steps
-
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/khraiwesh/Sensitivity-Analysis-for-Data-Driven-Business-Process-Simulation-.git bps_sensitivity_analysis_tool_final
-   cd bps_sensitivity_analysis_tool_final
-   ```
-
-2. Navigate to the docker_build folder:
-   ```bash
-   cd docker_build
-   ```
-
-3. Build and start the containers:
-   ```bash
-   docker compose -f docker-compose.yml --env-file .env up -d --build
-   ```
-
-4. Access the application:
-   - Frontend: http://localhost:5173
-   - Backend API: http://localhost:5000
-   - Output files will be stored in `docker_build/output/`
-
-##### Publishing Docker Images (Optional)
-
-If you want to publish your built images to Docker Hub:
-
-1. Log in to your Docker Hub account:
-   ```bash
-   docker login
-   ```
-
-2. Tag the images with your Docker Hub username:
-   ```bash
-   docker tag bps_sensitivity_analysis_backend_image_final:latest {dockerhub_username}/bps_sensitivity_analysis_backend_image_final:latest
-   docker tag bps_sensitivity_analysis_frontend_image_final:latest {dockerhub_username}/bps_sensitivity_analysis_frontend_image_final:latest
-   ```
-
-3. Push the images to Docker Hub:
-   ```bash
-   docker push {dockerhub_username}/bps_sensitivity_analysis_backend_image_final:latest
-   docker push {dockerhub_username}/bps_sensitivity_analysis_frontend_image_final:latest
-   ```
-
-### Option 2: Local Installation (Windows)
+### Option 1A: Using Pre-built Docker Images
 
 #### Prerequisites
 
-Make sure all the following software is installed and added to your system's PATH environment variables:
+* Docker Desktop installed and running
 
-1. **Python 3.11** (must be <3.12)
-   - Download from: https://www.python.org/downloads/release/python-3119/
-   - Verify installation:
-     ```bash
-     python --version
-     ```
-     Should output: `Python 3.11.9` (or similar 3.11.x)
-   - ⚠️ **Important**: If you see a different Python version, update your system PATH environment variable to prioritize Python 3.11
+#### Steps
 
+1. Clone the repository:
 
-2. **Node.js with npm**
-   - Download from: https://nodejs.org/en/download
-   - Verify installation:
-     ```bash
-     npm -v
-     # Should output: 10.8.1 (or similar)
-     ```
+```bash
+git clone https://github.com/khraiwesh/Sensitivity-Analysis-for-Data-Driven-Business-Process-Simulation-.git
+cd Sensitivity-Analysis-for-Data-Driven-Business-Process-Simulation-
+```
 
-3. **Java 8**
-   - Download from: https://www.java.com/en/download/manual.jsp
-   - Verify installation:
-     ```bash
-     java -version
-     # Should output: openjdk version "1.8.0_472" (or similar)
-     ```
+2. Navigate to the pre-built Docker configuration:
 
-#### Frontend Setup
+```bash
+cd docker_prebuilt
+```
 
-1. Open a terminal and navigate to the frontend folder:
-   ```bash
-   cd frontend
-   ```
+3. Pull the Docker images:
 
-2. Verify npm is available:
-   ```bash
-   npm -v
-   ```
+```bash
+docker pull eksicek/bps_sensitivity_analysis_backend_image_final:latest
+docker pull eksicek/bps_sensitivity_analysis_frontend_image_final:latest
+```
 
-3. Install frontend dependencies:
-   ```bash
-   npm install
-   ```
-   This will create a `node_modules/` folder.
+4. Start the containers:
 
-4. Start the frontend development server:
-   ```bash
-   npm run dev
-   ```
-   
-   You should see:
-   ```
-   VITE v7.2.2  ready in 1899 ms
+```bash
+docker compose -f docker-compose.bind.yml --env-file .env up -d
+```
 
-   ➜  Local:   http://localhost:5173/
-   ➜  Network: use --host to expose
-   ➜  press h + enter to show help
-   ```
-   
-   ✅ Frontend is running! Open http://localhost:5173/ in your browser.
+5. Access the application:
 
-#### Backend Setup
+* Frontend: `http://localhost:5173`
+* Backend API: `http://localhost:5000`
 
-1. Open a new terminal and navigate to the backend folder:
-   ```bash
-   cd backend
-   ```
+Generated outputs are stored under:
 
-2. Verify Python 3.11 is available:
-   ```bash
-   python --version
-   ```
-   Should output: `Python 3.11.9` (or similar 3.11.x)
-   
-   ⚠️ **Important**: If you see a different Python version, update your system PATH environment variable to prioritize Python 3.11
+```text
+docker_prebuilt/output/
+```
 
-3. Create a virtual environment using Python 3.11:
-   ```bash
-   python -m venv venv
-   ```
-   This creates a `venv` folder using Python 3.11.
+---
 
-4. Activate the virtual environment:
-   ```bash
-   venv\Scripts\activate
-   ```
-   You should now see `(venv)` at the beginning of your command prompt:
-   ```
-   (venv) C:\Users\YourName\Desktop\bps_sensitivity_analysis_tool>
-   ```
+### Option 1B: Building Docker Images from Source
 
-5. Verify you're using Python 3.11:
-   ```bash
-   python --version
-   # Should show Python 3.11.x
-   ```
+#### Prerequisites
 
-6. Upgrade pip:
-   ```bash
-   python -m pip install --upgrade pip
-   ```
+* Docker Desktop installed and running
+* Docker Hub account only if you intend to publish the built images
 
-7. Install dependencies:
-   ```bash
-   pip install -r requirements.txt
-   ```
+#### Steps
 
-8. Start the backend server:
-   ```bash
-   python app.py
-   ```
-   
-   You should see:
-   ```
-   Running with Python 3.11...
-   * Serving Flask app 'app'
-   * Debug mode: on
-   * Running on http://127.0.0.1:5000
-   ```
-   
-   ✅ Backend is running! Keep this terminal window open.
+1. Clone the repository:
 
-#### Running the Application Again
+```bash
+git clone https://github.com/khraiwesh/Sensitivity-Analysis-for-Data-Driven-Business-Process-Simulation-.git
+cd Sensitivity-Analysis-for-Data-Driven-Business-Process-Simulation-
+```
 
-After the initial setup, you can start the application with these simplified commands:
+2. Navigate to the Docker build configuration:
 
-**Frontend:**
+```bash
+cd docker_build
+```
+
+3. Build and start the containers:
+
+```bash
+docker compose -f docker-compose.yml --env-file .env up -d --build
+```
+
+4. Access the application:
+
+* Frontend: `http://localhost:5173`
+* Backend API: `http://localhost:5000`
+
+Generated outputs are stored under:
+
+```text
+docker_build/output/
+```
+
+### Publishing Docker Images (Optional)
+
+If you want to publish locally built images to Docker Hub:
+
+```bash
+docker login
+```
+
+Tag the images using your Docker Hub username:
+
+```bash
+docker tag bps_sensitivity_analysis_backend_image_final:latest <dockerhub_username>/bps_sensitivity_analysis_backend_image_final:latest
+docker tag bps_sensitivity_analysis_frontend_image_final:latest <dockerhub_username>/bps_sensitivity_analysis_frontend_image_final:latest
+```
+
+Then push the images:
+
+```bash
+docker push <dockerhub_username>/bps_sensitivity_analysis_backend_image_final:latest
+docker push <dockerhub_username>/bps_sensitivity_analysis_frontend_image_final:latest
+```
+
+---
+
+## Option 2: Local Installation
+
+### Prerequisites
+
+Make sure the following software is installed and available from your command line:
+
+* **Python 3.11** (must be < 3.12)
+* **Node.js with npm**
+* **Java 8**
+
+Verify the installations:
+
+```bash
+python --version
+npm -v
+java -version
+```
+
+### Frontend Setup
+
+From the repository root, navigate to the frontend directory:
+
 ```bash
 cd frontend
+```
+
+Install the frontend dependencies:
+
+```bash
+npm install
+```
+
+Start the frontend development server:
+
+```bash
 npm run dev
 ```
 
-**Backend:**
+The frontend is available by default at:
+
+```text
+http://localhost:5173
+```
+
+### Backend Setup
+
+Open another terminal and navigate from the repository root to the backend directory:
+
 ```bash
 cd backend
-venv\Scripts\activate
+```
+
+Create a Python virtual environment:
+
+```bash
+python -m venv venv
+```
+
+Activate the virtual environment using the command appropriate for your operating system.
+
+Install the required Python packages:
+
+```bash
+python -m pip install --upgrade pip
+pip install -r requirements.txt
+```
+
+Start the backend:
+
+```bash
+python app.py
+```
+
+The backend API is available by default at:
+
+```text
+http://localhost:5000
+```
+
+### Running the Application Again
+
+After the initial installation, start the frontend from the `frontend/` directory:
+
+```bash
+npm run dev
+```
+
+Then activate the Python virtual environment and start the backend from the `backend/` directory:
+
+```bash
 python app.py
 ```
 
 ---
 
-## Usage
+# Usage
 
-### Overview
+## Overview
 
-The BPS Sensitivity Analysis Tool helps you understand how uncertainty in process parameters affects simulation results and KPIs. It combines process discovery, simulation, and sensitivity analysis into a single workflow.
+The BPS Sensitivity Analysis Tool supports the analysis of how variations in simulation parameters influence simulation outcomes and KPIs.
 
-### Workflow
+The workflow integrates model discovery, parameter sampling and conversion, simulation, and sensitivity analysis.
 
-The tool consists of three modules, typically used in sequence:
+## Workflow
 
-1. **SIMOD – Model Discovery**: Discover a BPMN model and parameters from an event log
-2. **Sampling & Simulation**: Perturb parameters, run simulations, and compute KPIs
-3. **Sensitivity Analysis & Visualization**: Quantify how each parameter influences the results
+The tool consists of three main modules:
 
-Each module can also be run independently.
+1. **SIMOD – Model Discovery**
+   Discovers a BPS model from an event log.
 
----
+2. **Sampling & Simulation**
+   Generates sensitivity-analysis samples, converts them into valid BPS parameter configurations, executes simulations, and extracts KPIs.
 
-### Module 1: SIMOD – Model Discovery
+3. **Sensitivity Analysis & Visualization**
+   Computes sensitivity measures and visualizes parameter influence.
 
-Discovers a BPMN process model and its parameters from an event log.
-
-#### 💡 Example Inputs Available
-
-The `example_simod_inputs/` folder contains sample event logs (BPIC 2012 and BPIC 2017) that you can use to test SIMOD.
-
-#### Event Log Requirements
-
-Your event log CSV file must contain the following columns:
-- `case_id`
-- `activity`
-- `resource`
-- `start_time`
-- `end_time`
-
-#### Outputs
-
-- A BPMN model (`.bpmn` file)
-- A parameters JSON file (`.json`)
-
-Saved under: `output/simod_outputs/{folder_name}`
-
-If no folder name is provided, it is created automatically.
-
-#### Configuration Details
-
-- **SIMOD version**: 5.1.6
-- **Calendars**: Crisp (discrete)
-- **Extraneous delays**: Disabled
-- **Model discovery**: Includes optimization
-- **Test log**: Not performed
-
-For more information, visit the [SIMOD documentation](https://simod.readthedocs.io/en/latest/index.html).
+The modules are designed to be used sequentially, but the sensitivity-analysis workflow can also start from an existing BPS model consisting of a BPMN model and its simulation-parameter configuration.
 
 ---
 
-### Module 2: Sampling & Simulation
+# Module 1: SIMOD – Model Discovery
 
-Uses the BPMN model and parameters JSON to perform sampling and run simulations.
+This module discovers a BPMN process model and its simulation parameters from an event log.
 
-#### 💡 Example Inputs Available
+## Example Inputs
 
-The `example_sensitivity_analysis_inputs/` folder contains pre-generated BPMN models and parameter files (BPIC 2012 and BPIC 2017) that you can use to test sampling and simulation without running SIMOD first.
+The `example_simod_inputs/` directory contains example event logs that can be used to test the model-discovery workflow.
 
-#### Sampling
+## Event Log Requirements
 
-Sampling means systematically perturbing parameters within their defined ranges. Each sampled configuration is simulated and KPIs are stored for analysis.
+The input event log is provided as a CSV file containing the following attributes:
 
-#### Sensitivity Analysis Methods
+* `case_id`
+* `activity`
+* `resource`
+* `start_time`
+* `end_time`
 
-##### Sobol (Global Sensitivity Analysis)
+## Outputs
 
-Measures how parameters influence output variance across the full parameter space.
+The discovery module produces:
 
-**Computed indices:**
-- **First-order (S₁)**: Direct effect of a single parameter
-- **Total-order (Sₜ)**: Overall importance, including interactions
-- **Second-order (Sᵢⱼ)** (optional): Interaction effects between parameter pairs
+* a BPMN process model (`.bpmn`)
+* a simulation-parameter configuration (`.json`)
 
-**Number of samples:**
-- Determines how many model evaluations are required to estimate global sensitivity indices
-- Controls accuracy
-- Should be a power of 2
-- Runtime increases linearly with number of samples
+Outputs are stored under:
 
-##### Morris (Local Sensitivity Analysis)
-
-A computationally cheaper method for identifying influential parameters with first-order effects only.
-
-**Trajectories:**
-- Number of random paths through the parameter space
-- Each trajectory is one path where parameters are changed one at a time
-- More trajectories → more reliable results
-
-**Levels:**
-- Defines the grid on which parameters can move within their range
-- Affects resolution and slightly affects runtime
-
-**Learn More:**
-- [SALib Documentation](https://salib.readthedocs.io/en/latest/) - Read more about Sobol and Morris methods
-
-#### Simulation Settings
-
-##### Number of Cases
-- One case = one complete process execution
-- More cases → smoother KPIs, less noise
-- **💡 Recommendation**: Use the same count as your original event log
-
-##### Simulation Replications per Sample
-- Number of simulation replications to average out randomness
-- More runs → more stable KPIs, but longer runtime
-
-##### Random Seed
-- Ensures reproducibility of sampling and sensitivity analysis
-- **⚠️ Note**: Prosimos simulation engine doesn't use seeds, so some variation may remain
-
-#### Analysis Scope
-
-Defines what counts as a dimension in sensitivity analysis.
-
-**Examples:**
-- **Parameter groups** (e.g., resources, gateways) → Dimensions = number of groups
-- **Individual parameters** (e.g., gateway 1, gateway 2) → Dimensions = number of parameters
-
-More dimensions → longer runtime.
-
-#### Runtime Considerations
-
-##### Sobol
-Runtime grows linearly with:
-- Number of dimensions (D)
-- Samples (N)
-- Cases (C)
-- Replication runs (R)
-
-Enabling second-order effects roughly doubles runtime.
-
-**Formula (simplified):**
-```
-Runtime ~ N × (D + 2) × C × R
+```text
+output/simod_outputs/<run_name>/
 ```
 
-##### Morris
-Runtime grows linearly with:
-- Number of dimensions (D)
-- Trajectories (r)
-- Cases (C)
-- Replication runs (R)
+If no run name is provided, an output directory is generated automatically.
 
-Significantly cheaper than Sobol.
+## Configuration
 
-**Formula (simplified):**
-```
-Runtime ~ r × (D + 1) × C × R
-```
+The implementation uses:
 
-#### Outputs
+* **SIMOD version:** 5.1.6
+* **Calendars:** Crisp (discrete)
+* **Extraneous delays:** Disabled
+* **Model discovery:** Includes optimization
+* **Test log:** Not performed
 
-All results are stored under: `output/simulation_and_sensitivity_analysis_outputs/{folder_name}`
-
-Contents include:
-- `user_config.json`: Run configuration summary
-- `samples/`: Sampled parameter values
-- `simulation_results/`: Computed KPIs
-- `sensitivity_analysis_inputs/`: Inputs used for analysis
+For additional information about SIMOD, see the official SIMOD documentation.
 
 ---
 
-### Module 3: Sensitivity Analysis & Visualization
+# Module 2: Sampling & Simulation
 
-In the final step:
+This module takes a BPMN process model and its simulation-parameter configuration as input, generates sensitivity-analysis samples, converts them into executable BPS configurations, and performs simulation.
 
-1. Select a simulation results folder (or use the latest automatically)
-2. Choose a KPI and statistic
-3. Run sensitivity analysis
-4. Visualize the results
+## Example Inputs
 
-#### Important Notes
-
-- Sensitivity analysis currently supports **process-level KPIs**
-- Simulation outputs also include case-, task-, and resource-level KPIs for advanced analysis
-
-Results are saved under:
-```
-.../{simulation_results_folder}/sensitivity_analysis_outputs/{analysis_run}
-```
+The `example_sensitivity_analysis_inputs/` directory contains example BPMN models and parameter configurations that can be used to test the sensitivity-analysis workflow without first executing SIMOD.
 
 ---
 
-## Architecture & System Flow
+## Sampling
 
-### Overview
+Sampling systematically varies the selected BPS parameters according to the selected sensitivity-analysis method.
 
-The BPS Sensitivity Analysis Tool follows a client-server architecture with a React frontend and Flask backend. The system is designed to orchestrate complex workflows involving model discovery, parameter sampling, process simulation, and sensitivity analysis.
+The framework supports a normalized sampling space, after which sampled values are transformed into valid parameter values according to the semantics and constraints of the corresponding BPS parameter type.
 
-### System Components
-
-#### Frontend (React + Vite)
-- **Location**: `frontend/src/`
-- **Main Entry**: [App.jsx](frontend/src/App.jsx) - Tab-based navigation with four main panels
-- **Key Components**:
-  - [InstructionsPanel.jsx](frontend/src/InstructionsPanel.jsx) - User guidance and documentation
-  - [SimodModelDiscovery.jsx](frontend/src/SimodModelDiscovery.jsx) - SIMOD configuration interface
-  - [SamplingAndSimulation.jsx](frontend/src/SamplingAndSimulation.jsx) - Sensitivity analysis setup
-  - [SensitivityAnalysis.jsx](frontend/src/SensitivityAnalysis.jsx) - Results loading and visualization
-  - [Visualization.jsx](frontend/src/Visualization.jsx) - Charts and visual analysis
-  - **VisualizationComponents/**: Reusable chart components (BarChart, BumpChart, Heatmap)
-
-#### Backend (Flask + Python)
-- **Location**: `backend/`
-- **Main Entry**: [app.py](backend/app.py) - Flask server with REST API endpoints
-
-**Core API Endpoints**:
-
-1. **`POST /simod`** - SIMOD model discovery
-   - Accepts: Event log CSV + configuration
-   - Returns: BPMN model and parameters JSON
-
-2. **`POST /simulate`** - Sampling and simulation pipeline
-   - Accepts: BPMN + JSON + sensitivity analysis configuration
-   - Returns: Simulation results and KPIs
-
-3. **`POST /sensitivity-analysis`** - Sensitivity analysis execution
-   - Accepts: KPI selection + simulation folder reference
-   - Returns: Sensitivity indices (Sobol or Morris)
-
-### Data Flow
-
-```
-┌─────────────────────────────────────────────────────────────┐
-│                      USER INTERACTION                        │
-└─────────────────────────────────────────────────────────────┘
-                              │
-                              ▼
-┌─────────────────────────────────────────────────────────────┐
-│                   WORKFLOW MODULE 1                          │
-│                  SIMOD Model Discovery                       │
-├─────────────────────────────────────────────────────────────┤
-│  Input: Event Log CSV                                        │
-│  ↓                                                            │
-│  run_simod() → SIMOD Library                                 │
-│  ↓                                                            │
-│  Output: BPMN Model + Parameters JSON                        │
-└─────────────────────────────────────────────────────────────┘
-                              │
-                              ▼
-┌─────────────────────────────────────────────────────────────┐
-│                   WORKFLOW MODULE 2                          │
-│              Sampling & Simulation Pipeline                  │
-├─────────────────────────────────────────────────────────────┤
-│  Input: BPMN + JSON + SA Configuration                       │
-│  ↓                                                            │
-│  1. extract_parameters()                                     │
-│     - Parse gateways, resources, calendars, distributions   │
-│  ↓                                                            │
-│  2. run_sampling()                                           │
-│     - Generate Sobol/Morris samples (SALib)                 │
-│  ↓                                                            │
-│  3. convert_samples()                                        │
-│     - Transform uniform samples to domain values            │
-│  ↓                                                            │
-│  4. write_all_samples_to_json_files()                        │
-│     - Create individual JSON configs for each sample        │
-│  ↓                                                            │
-│  5. simulate_samples()                                       │
-│     - Run Prosimos simulations (with replications)            │
-│     - Aggregate KPIs across runs                             │
-│  ↓                                                            │
-│  Output: Process KPIs (Parquet files) + SA Config            │
-└─────────────────────────────────────────────────────────────┘
-                              │
-                              ▼
-┌─────────────────────────────────────────────────────────────┐
-│                   WORKFLOW MODULE 3                          │
-│          Sensitivity Analysis & Visualization                │
-├─────────────────────────────────────────────────────────────┤
-│  Input: Process KPIs + SA Config                             │
-│  ↓                                                            │
-│  1. read_sa_inputs()                                         │
-│     - Load samples and problem definition                   │
-│  ↓                                                            │
-│  2. sobol_analysis() OR morris_analysis()                    │
-│     - Compute sensitivity indices (SALib)                   │
-│  ↓                                                            │
-│  3. Save results as JSON                                     │
-│  ↓                                                            │
-│  4. Visualization components render charts                   │
-│     - Bar charts, bump charts, heatmaps                     │
-│  ↓                                                            │
-│  Output: Sensitivity indices + Visual dashboards             │
-└─────────────────────────────────────────────────────────────┘
-```
-
-### Core Backend Modules
-
-#### 1. SIMOD Module (`src/simod/`)
-**Main Function**: `run_simod(train_file, output_folder)`
-
-- Creates directory structure (inputs/ and outputs/)
-- Saves uploaded event log to inputs/
-- Loads and updates configuration file
-- Builds event log with preprocessing
-- Executes SIMOD discovery pipeline
-- Returns BPMN model and parameters JSON
-
-**Key Output**: BPMN process model with resource calendars, gateway probabilities, and task-resource assignments
-
-#### 2. Simulation Pipeline (`src/simulation_pipeline/`)
-**Main Function**: `run_simulation_pipeline(...)`
-
-This orchestrator coordinates five sub-modules:
-
-**2.1 Parameter Extraction** (`extract_parameters/`)
-- `extract_parameters()`: Parses JSON config to extract modifiable parameters
-- Groups parameters by dimension: gateways, arrival distributions, calendars, resources
-- Writes warning files for any extraction issues
-
-**2.2 Sampling** (`sampling/`)
-- `run_sampling()`: Generates sample matrices using SALib
-- **Sobol**: Creates N × (D + 2) samples for global sensitivity analysis
-- **Morris**: Creates r × (D + 1) samples for local sensitivity screening
-- Returns SALib problem definition and sample matrix
-
-**2.3 Sample Conversion** (`convert_samples/`)
-- `convert_samples()`: Transforms uniform [0,1] samples into domain-specific values
-- Handles probability distributions, calendar time slots, resource counts
-- Ensures all constraints are satisfied (e.g., probabilities sum to 1)
-
-**2.4 JSON Generation** (`convert_samples/`)
-- `write_all_samples_to_json_files()`: Creates individual Prosimos config files
-- Each sample becomes a complete JSON configuration
-- Organized by case count for batch simulation
-
-**2.5 Simulation** (`simulation/`)
-- `simulate_samples()`: Runs Prosimos simulation engine
-- Executes replication runs for each sample configuration
-- Aggregates KPIs: cycle time, processing time, waiting time, etc.
-- Outputs Parquet files with process-, case-, task-, and resource-level KPIs
-
-#### 3. Sensitivity Analysis Module (`src/sensitivity_analysis/`)
-**Main Function**: `run_sensitivity_analysis(...)`
-
-- `read_sa_inputs()`: Loads problem definition and samples from previous run
-- **Sobol Analysis** (`sobol_analysis.py`):
-  - Computes first-order (S₁) and total-order (Sₜ) indices
-  - Optional second-order interaction effects (Sᵢⱼ)
-  - Identifies parameters with direct influence vs. interaction effects
-- **Morris Analysis** (`morris_analysis.py`):
-  - Computes μ (mean effect) and σ (standard deviation of effect)
-  - Identifies parameters with linear vs. non-linear/interaction effects
-  - More efficient for screening large parameter spaces
-
-**Output**: JSON files with sensitivity indices for each parameter/group
-
-### Key Libraries & Dependencies
-
-- **SIMOD 5.1.6**: Process mining and model discovery
-- **Prosimos**: Business process simulation engine
-- **SALib**: Sensitivity analysis library (Sobol, Morris methods)
-- **Pandas**: Data manipulation and KPI aggregation
-- **NumPy**: Numerical computations
-- **React + Vite**: Frontend framework and build tool
-- **Flask + Flask-CORS**: Backend web server
-
-### File Storage Structure
-
-```
-output/
-├── simod_outputs/
-│   └── {run_name}/
-│       ├── inputs/          # Event log, config
-│       └── outputs/         # BPMN, JSON parameters
-│
-└── simulation_and_sensitivity_analysis_outputs/
-    └── {run_name}/
-        ├── user_config.json                    # Run configuration
-        ├── samples/                            # Sampled parameter values
-        ├── simulation_results/                 # Prosimos outputs
-        │   ├── process_kpis_*.parquet         # KPIs by case count
-        │   └── ...                             # Other KPI levels
-        ├── sensitivity_analysis_inputs/        # SA problem & config
-        │   └── sa_config.json
-        └── sensitivity_analysis_outputs/       # SA results
-            └── {analysis_name}/
-                ├── user_config.json
-                └── *_indices.json              # Sensitivity indices
-```
-
-### Extension Points
-
-The modular architecture allows for easy extensions:
-
-- **New sensitivity methods**: Add to `src/sensitivity_analysis/`
-- **Additional KPIs**: Extend simulation aggregation in `simulate_samples()`
-- **Custom visualizations**: Add React components to `VisualizationComponents/`
-- **Alternative simulators**: Replace Prosimos calls in `simulation/` module
+Each resulting parameter configuration is simulated and the selected KPIs are recorded for subsequent sensitivity analysis.
 
 ---
 
-## Repository Contents (SAExperiments)
+## Sensitivity Analysis Methods
 
-The `SAExperiments/` folder contains the scripts, configuration templates, and processed results used to produce the experiments and figures reported in the thesis/paper.
+### Sobol
 
-**Not included in this repository:** the raw intermediate `.json` sample/configuration chunk files generated during experiment runs (tens of thousands of files, ~100 GB total). These are large, regenerable intermediate artifacts of the simulation/sampling pipeline — not final results — and are excluded via `.gitignore` (`SAExperiments/**/*.json`) to keep the repository size manageable.
+Sobol is a variance-based global sensitivity-analysis method that decomposes output variance into contributions associated with the analyzed inputs.
 
-To regenerate them, re-run the sampling/simulation pipeline (see [Module 2: Sampling & Simulation](#module-2-sampling--simulation)) using the scripts and configuration files under `SAExperiments/`, which point to the same inputs/parameters used in the original experiments. The processed outputs derived from those runs (`.parquet`, `.csv`, `.xlsx`, `.png`, `.txt` result tables and figures) are included in this repository.
+The implementation supports:
+
+* **First-order index (S₁):** contribution of an individual input to output variance
+* **Total-order index (Sₜ):** contribution of an input including effects involving interactions
+* **Second-order index (Sᵢⱼ):** pairwise interaction effects, when enabled
+
+The base sample size controls the number of model evaluations required for estimating the sensitivity indices. Increasing the sample size generally improves estimation but also increases computational cost.
 
 ---
 
+### Morris
+
+Morris is a global sensitivity-analysis method designed for computationally efficient screening of influential inputs.
+
+The implementation computes:
+
+* **μ*:** magnitude of the elementary effects, used to characterize overall input influence
+* **σ:** variation in elementary effects across the input space, which can indicate nonlinearities.
+
+The number of trajectories controls the sampling effort. Increasing the number of trajectories provides more observations of the elementary effects but increases computational cost.
+
+The number of levels determines the discretization of the normalized input space used by the Morris design.
+
+The implementation uses **SALib** for Sobol and Morris sampling and analysis.
+
+---
+
+## Simulation Settings
+
+### Number of Cases
+
+The number of cases determines how many process instances are simulated for each configuration.
+
+Increasing the number of cases can reduce stochastic variation in the estimated process-level KPIs but increases simulation runtime.
+
+### Simulation Replications per Sample
+
+Multiple simulation replications can be performed for each sampled parameter configuration.
+
+The KPI values obtained from the replications are aggregated before sensitivity analysis.
+
+Increasing the number of replications can reduce simulation noise but also increases computational cost.
+
+### Random Seed
+
+A random seed can be specified for reproducible sampling and analysis where supported by the underlying components.
+
+Because simulation engines may have their own stochastic behavior and seed-handling semantics, exact simulation reproducibility can depend on the selected BPS engine.
+
+---
+
+## Analysis Scope
+
+The tool supports sensitivity analysis at two levels.
+
+### Parameter-Group Level
+
+Parameters belonging to the same BPS parameter group are analyzed together.
+
+Examples of supported parameter groups include:
+
+* Gateway probabilities
+* Arrival distributions
+* Arrival calendars
+* Task–resource distributions
+* Resource calendars
+* Resource quantities
+
+For non-gateway groups, parameters within the selected group are perturbed jointly using a shared sampled input. Gateway branches are sampled independently and assigned to the common Gateways group for group-level sensitivity attribution.
+
+### Within-Group Level
+
+Individual parameters within a selected parameter group are analyzed separately.
+
+This enables the user to identify which individual parameters drive the sensitivity observed at the group level.
+
+The number of sensitivity-analysis dimensions therefore depends on the selected analysis scope and parameter configuration.
+
+---
+
+## Runtime Considerations
+
+Sensitivity analysis can require a large number of simulation runs. Runtime depends primarily on:
+
+* sensitivity-analysis method
+* sampling effort
+* number of analyzed dimensions
+* number of simulated cases
+* number of simulation replications
+* selected simulation engine
+
+### Sobol
+
+For first- and total-order indices, the number of required model evaluations grows approximately with:
+
+```text
+N × (D + 2)
+```
+
+where:
+
+* `N` = base sample size
+* `D` = number of sensitivity-analysis dimensions
+
+The total simulation workload additionally depends on the number of cases and replications.
+
+If second-order effects are enabled, additional model evaluations are required.
+
+### Morris
+
+The number of model evaluations grows approximately with:
+
+```text
+r × (D + 1)
+```
+
+where:
+
+* `r` = number of trajectories
+* `D` = number of sensitivity-analysis dimensions
+
+Morris therefore generally requires fewer model evaluations than variance-based Sobol analysis for comparable dimensionality.
+
+---
+
+## Outputs
+
+Module 2 stores its outputs under:
+
+```text
+output/simulation_and_sensitivity_analysis_outputs/<run_name>/
+```
+
+The generated artifacts include:
+
+```text
+user_config.json
+samples/
+simulation_results/
+sensitivity_analysis_inputs/
+```
+
+These contain the run configuration, sampled parameter values, simulation KPIs, and inputs required for subsequent sensitivity analysis.
+
+---
+
+# Module 3: Sensitivity Analysis & Visualization
+
+Module 3 takes the simulation outputs generated by Module 2 and computes the requested sensitivity measures.
+
+The workflow is:
+
+1. Select a simulation-results directory.
+2. Select the KPI and statistic to analyze.
+3. Run the selected sensitivity-analysis method.
+4. Inspect and visualize the resulting sensitivity measures.
+
+## Supported KPIs
+
+Sensitivity analysis currently focuses on **process-level KPIs**.
+
+Simulation outputs may additionally contain case-, task-, and resource-level statistics that can be used for further analysis.
+
+## Outputs
+
+Sensitivity-analysis results are stored under the corresponding simulation run:
+
+```text
+output/simulation_and_sensitivity_analysis_outputs/<run_name>/
+└── sensitivity_analysis_outputs/
+    └── <analysis_name>/
+```
+
+The outputs include the analysis configuration and computed sensitivity measures.
+
+---
+
+# Architecture and System Flow
+
+## Overview
+
+The BPS Sensitivity Analysis Tool follows a client–server architecture with a React frontend and Flask backend.
+
+The backend coordinates the main research workflow:
+
+```text
+Event Log
+    │
+    ▼
+┌──────────────────────────────┐
+│ Module 1                     │
+│ SIMOD Model Discovery        │
+│                              │
+│ Event Log                    │
+│    ↓                         │
+│ BPMN + Parameter JSON        │
+└──────────────────────────────┘
+    │
+    ▼
+┌──────────────────────────────┐
+│ Module 2                     │
+│ Sampling & Simulation        │
+│                              │
+│ Parameter Extraction         │
+│    ↓                         │
+│ SA Sampling                  │
+│    ↓                         │
+│ Parameter Conversion         │
+│    ↓                         │
+│ Simulation                   │
+│    ↓                         │
+│ KPI Extraction               │
+└──────────────────────────────┘
+    │
+    ▼
+┌──────────────────────────────┐
+│ Module 3                     │
+│ Sensitivity Analysis         │
+│                              │
+│ KPI Results                  │
+│    ↓                         │
+│ Sobol / Morris Analysis      │
+│    ↓                         │
+│ Sensitivity Measures         │
+│    ↓                         │
+│ Visualization                │
+└──────────────────────────────┘
+```
+
+Alternatively, Module 2 can be executed directly using an existing BPMN model and simulation-parameter configuration.
+
+---
+
+# System Components
+
+## Frontend
+
+The frontend is implemented using React and Vite.
+
+Location:
+
+```text
+frontend/src/
+```
+
+Main entry:
+
+```text
+frontend/src/App.jsx
+```
+
+Key components include:
+
+* `InstructionsPanel.jsx` – user guidance
+* `SimodModelDiscovery.jsx` – model-discovery interface
+* `SamplingAndSimulation.jsx` – sampling and simulation configuration
+* `SensitivityAnalysis.jsx` – sensitivity-analysis execution
+* `Visualization.jsx` – visualization of results
+* `VisualizationComponents/` – reusable visualization components
+
+---
+
+## Backend
+
+The backend is implemented using Flask and Python.
+
+Location:
+
+```text
+backend/
+```
+
+Main entry:
+
+```text
+backend/app.py
+```
+
+### Main API Endpoints
+
+#### `POST /simod`
+
+Performs BPS model discovery.
+
+**Input:**
+
+* event log
+* discovery configuration
+
+**Output:**
+
+* BPMN process model
+* simulation-parameter JSON
+
+#### `POST /simulate`
+
+Executes the sampling and simulation pipeline.
+
+**Input:**
+
+* BPMN model
+* parameter JSON
+* sensitivity-analysis configuration
+
+**Output:**
+
+* sampled configurations
+* simulation results
+* KPIs
+
+#### `POST /sensitivity-analysis`
+
+Executes sensitivity analysis.
+
+**Input:**
+
+* simulation results
+* sensitivity-analysis configuration
+* KPI selection
+
+**Output:**
+
+* Sobol or Morris sensitivity measures
+
+---
+
+# Core Backend Modules
+
+## 1. SIMOD Module
+
+Location:
+
+```text
+src/simod/
+```
+
+Main function:
+
+```text
+run_simod(...)
+```
+
+The module:
+
+* prepares the model-discovery inputs
+* configures the discovery procedure
+* executes SIMOD
+* stores the discovered BPMN model
+* stores the discovered simulation parameters
+
+The resulting BPS model contains the process structure and discovered simulation parameters required by the subsequent modules.
+
+---
+
+## 2. Simulation Pipeline
+
+Location:
+
+```text
+src/simulation_pipeline/
+```
+
+Main function:
+
+```text
+run_simulation_pipeline(...)
+```
+
+The simulation pipeline coordinates the following steps.
+
+### 2.1 Parameter Extraction
+
+Location:
+
+```text
+extract_parameters/
+```
+
+The parameter-extraction component:
+
+* parses the simulation-parameter configuration
+* identifies modifiable BPS parameters
+* organizes parameters according to their parameter groups
+* reports extraction issues where applicable
+
+### 2.2 Sampling
+
+Location:
+
+```text
+sampling/
+```
+
+The sampling component:
+
+* constructs the sensitivity-analysis problem definition
+* generates Sobol or Morris samples using SALib
+* stores the generated sample matrix for subsequent conversion
+
+### 2.3 Parameter Conversion
+
+Location:
+
+```text
+convert_samples/
+```
+
+The conversion component transforms normalized sensitivity-analysis samples into valid BPS parameter values.
+
+It handles:
+
+* gateway probabilities
+* arrival distributions
+* task–resource distributions
+* arrival calendars
+* resource calendars
+* resource quantities
+
+The parameter-specific transformations preserve the relevant structural constraints of each parameter type, such as valid routing-probability vectors and executable calendar/resource configurations.
+
+### 2.4 Simulation Configuration Generation
+
+Each sampled point is converted into a complete simulation-parameter configuration that can be executed by the selected BPS engine.
+
+### 2.5 Simulation
+
+The simulation component:
+
+* executes the sampled configurations
+* performs the requested number of replications
+* extracts simulation KPIs
+* aggregates KPI values across replications where applicable
+* stores the resulting process-, case-, task-, and resource-level statistics
+
+---
+
+## 3. Sensitivity Analysis Module
+
+Location:
+
+```text
+src/sensitivity_analysis/
+```
+
+Main function:
+
+```text
+run_sensitivity_analysis(...)
+```
+
+The module reads the sampling design and corresponding simulation outcomes and applies the selected sensitivity-analysis method.
+
+### Sobol Analysis
+
+The Sobol implementation computes:
+
+* first-order indices (S₁)
+* total-order indices (Sₜ)
+* optional second-order indices (Sᵢⱼ)
+
+### Morris Analysis
+
+The Morris implementation computes:
+
+* μ*
+* σ
+
+The resulting sensitivity measures are stored for subsequent interpretation and visualization.
+
+---
+
+# Key Libraries and Dependencies
+
+The implementation uses the following main libraries and frameworks:
+
+* **SIMOD 5.1.6** – data-driven BPS model discovery
+* **Prosimos** – business process simulation
+* **SALib** – Sobol and Morris sampling and sensitivity analysis
+* **Pandas** – data processing and KPI aggregation
+* **NumPy** – numerical computation
+* **React + Vite** – frontend
+* **Flask + Flask-CORS** – backend API
+
+
+# Experimental Artifacts
+
+The `SAExperiments/` directory contains the scripts, configuration templates, and processed results used to produce the experiments and figures reported in the accompanying paper.
+
+The experimental artifacts are organized to support inspection and reproduction of the reported analyses.
+
+## Included Artifacts
+
+Depending on the experiment, the repository includes:
+
+* experiment scripts
+* analysis scripts
+* configuration files
+* processed simulation results
+* sensitivity-analysis results
+* result tables
+* figures
+
+Common output formats include:
+
+* `.parquet`
+* `.csv`
+* `.xlsx`
+* `.png`
+* `.txt`
+
+# Extension Points
+
+The modular architecture supports extensions to different parts of the workflow.
+
+### Additional Sensitivity-Analysis Methods
+
+New sensitivity-analysis methods can be integrated into:
+
+```text
+src/sensitivity_analysis/
+```
+
+### Additional KPIs
+
+Additional KPI computations can be incorporated into the simulation-output aggregation.
+
+### Additional Visualizations
+
+New visualization components can be added to:
+
+```text
+VisualizationComponents/
+```
+
+### Alternative Simulation Engines
+
+The modular simulation layer can be extended to support additional BPS engines, subject to their parameter semantics and simulation interfaces.
+
+---
+
+# Reproducibility
+
+The repository provides the implementation, example inputs, experiment configurations, scripts, and processed results required to inspect and reproduce the sensitivity-analysis workflow and the analyses reported in the accompanying paper.
+
+For reproducing an analysis:
+
+1. Install the tool using Docker or the local installation procedure.
+2. Use either an event log with Module 1 or an existing BPMN model and parameter configuration with Module 2.
+3. Configure the sensitivity-analysis method, parameter scope, sampling effort, and simulation settings.
+4. Execute sampling and simulation.
+5. Run Module 3 on the resulting KPIs.
+6. Compare the generated sensitivity measures with the provided processed experimental results.
+
+Because BPS execution can be stochastic and simulator-specific, exact numerical reproduction may depend on the simulation engine, randomization behavior, number of cases, and replication settings.
+
+---
+
+# Repository Purpose
+
+This repository accompanies the research on sensitivity analysis for data-driven Business Process Simulation. It is intended to:
+
+* provide the implementation of the proposed sensitivity-analysis workflow;
+* document how the framework can be executed;
+* provide example inputs for testing the implementation;
+* make the experimental scripts and processed results available for inspection; and
+* support reproduction and extension of the reported experiments.
