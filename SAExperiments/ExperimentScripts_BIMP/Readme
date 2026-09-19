@@ -1,0 +1,2 @@
+This folder contains the script to run BIMP Experiments, they are divided into batches so we can run them in parallel
+the results of the experiments are in Experiments folder 
