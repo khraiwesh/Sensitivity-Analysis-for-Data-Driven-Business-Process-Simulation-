@@ -1,0 +1,73 @@
+seed,multiplier,name,mu_star
+100,1,Arrival Calendar,150780.4351
+100,1,Arrival Distribution,332711.1168
+100,1,Gateways,171013.8191
+100,1,Resource Calendars,384579.2924
+100,1,Resource Numbers,109215.4767
+100,1,Tasks and Resources Distributions,149288.1084
+100,2,Arrival Calendar,329889.9031
+100,2,Arrival Distribution,718056.8535
+100,2,Gateways,405507.485
+100,2,Resource Calendars,872287.8995
+100,2,Resource Numbers,200559.4373
+100,2,Tasks and Resources Distributions,297704.1132
+100,3,Arrival Calendar,593721.9267
+100,3,Arrival Distribution,1087220.448
+100,3,Gateways,648243.4474
+100,3,Resource Calendars,1420219.034
+100,3,Resource Numbers,280991.2324
+100,3,Tasks and Resources Distributions,466216.3166
+100,5,Arrival Calendar,894956.6505
+100,5,Arrival Distribution,1371937.026
+100,5,Gateways,1196189.73
+100,5,Resource Calendars,2590649.719
+100,5,Resource Numbers,790008.5785
+100,5,Tasks and Resources Distributions,802785.9827
+200,1,Arrival Calendar,89317.77957
+200,1,Arrival Distribution,246791.9015
+200,1,Gateways,167915.0283
+200,1,Resource Calendars,1822422.787
+200,1,Resource Numbers,1665995.414
+200,1,Tasks and Resources Distributions,778284.9584
+200,2,Arrival Calendar,273955.2203
+200,2,Arrival Distribution,554967.7453
+200,2,Gateways,353013.0387
+200,2,Resource Calendars,4413852.569
+200,2,Resource Numbers,3313000.323
+200,2,Tasks and Resources Distributions,2562882.761
+200,3,Arrival Calendar,540985.2652
+200,3,Arrival Distribution,891606.4846
+200,3,Gateways,527107.7857
+200,3,Resource Calendars,7077324.536
+200,3,Resource Numbers,5236248.013
+200,3,Tasks and Resources Distributions,4395901.658
+200,5,Arrival Calendar,955115.6664
+200,5,Arrival Distribution,1545350.221
+200,5,Gateways,901604.0984
+200,5,Resource Calendars,13227440.3
+200,5,Resource Numbers,9119245.858
+200,5,Tasks and Resources Distributions,8956942.035
+300,1,Arrival Calendar,402040.6325
+300,1,Arrival Distribution,961391.3249
+300,1,Gateways,981176.8981
+300,1,Resource Calendars,663992.4931
+300,1,Resource Numbers,69242.29264
+300,1,Tasks and Resources Distributions,1089275.415
+300,2,Arrival Calendar,985368.1393
+300,2,Arrival Distribution,1315146.561
+300,2,Gateways,2193027.417
+300,2,Resource Calendars,1723661.958
+300,2,Resource Numbers,390250.6497
+300,2,Tasks and Resources Distributions,2253918.972
+300,3,Arrival Calendar,1332004.254
+300,3,Arrival Distribution,1347019.162
+300,3,Gateways,3367714.686
+300,3,Resource Calendars,3079129.365
+300,3,Resource Numbers,741043.5518
+300,3,Tasks and Resources Distributions,3387544.938
+300,5,Arrival Calendar,1975375.689
+300,5,Arrival Distribution,1503200.835
+300,5,Gateways,5740525.552
+300,5,Resource Calendars,5905316.831
+300,5,Resource Numbers,1560677.285
+300,5,Tasks and Resources Distributions,5596846.362

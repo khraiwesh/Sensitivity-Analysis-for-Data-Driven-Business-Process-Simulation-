@@ -1,0 +1,73 @@
+seed,multiplier,group,ST
+100,1,Arrival Calendar,0.188944342
+100,1,Arrival Distribution,0.292756181
+100,1,Gateways,0.108841371
+100,1,Resource Calendars,0.802658671
+100,1,Resource Numbers,0.070886748
+100,1,Tasks and Resources Distributions,0.021965895
+100,2,Arrival Calendar,0.15854868
+100,2,Arrival Distribution,0.331155404
+100,2,Gateways,0.13690383
+100,2,Resource Calendars,0.807721451
+100,2,Resource Numbers,0.072220363
+100,2,Tasks and Resources Distributions,0.215482391
+100,3,Arrival Calendar,0.145402391
+100,3,Arrival Distribution,0.273908355
+100,3,Gateways,0.162959393
+100,3,Resource Calendars,0.743516261
+100,3,Resource Numbers,0.092419718
+100,3,Tasks and Resources Distributions,0.409841323
+100,5,Arrival Calendar,0.080666442
+100,5,Arrival Distribution,0.160475102
+100,5,Gateways,0.111101727
+100,5,Resource Calendars,0.56241239
+100,5,Resource Numbers,0.21233557
+100,5,Tasks and Resources Distributions,0.52086891
+200,1,Arrival Calendar,0.081392655
+200,1,Arrival Distribution,0.180319921
+200,1,Gateways,0.057107376
+200,1,Resource Calendars,0.731484701
+200,1,Resource Numbers,0.0455308
+200,1,Tasks and Resources Distributions,0.012608437
+200,2,Arrival Calendar,0.072452648
+200,2,Arrival Distribution,0.183388922
+200,2,Gateways,0.078611683
+200,2,Resource Calendars,0.712261153
+200,2,Resource Numbers,0.116394863
+200,2,Tasks and Resources Distributions,0.065595772
+200,3,Arrival Calendar,0.139494835
+200,3,Arrival Distribution,0.149503034
+200,3,Gateways,0.171911243
+200,3,Resource Calendars,0.807375771
+200,3,Resource Numbers,0.28111228
+200,3,Tasks and Resources Distributions,0.14842728
+200,5,Arrival Calendar,0.062672143
+200,5,Arrival Distribution,0.077814564
+200,5,Gateways,0.189681139
+200,5,Resource Calendars,0.932201159
+200,5,Resource Numbers,0.684644508
+200,5,Tasks and Resources Distributions,0.233482398
+300,1,Arrival Calendar,0.16789849
+300,1,Arrival Distribution,0.225505187
+300,1,Gateways,0.082756582
+300,1,Resource Calendars,0.712138047
+300,1,Resource Numbers,0.047338232
+300,1,Tasks and Resources Distributions,0.065760998
+300,2,Arrival Calendar,0.127358405
+300,2,Arrival Distribution,0.203276647
+300,2,Gateways,0.163758191
+300,2,Resource Calendars,0.641550737
+300,2,Resource Numbers,0.043725365
+300,2,Tasks and Resources Distributions,0.340535682
+300,3,Arrival Calendar,0.106141846
+300,3,Arrival Distribution,0.168157509
+300,3,Gateways,0.211596828
+300,3,Resource Calendars,0.583006309
+300,3,Resource Numbers,0.040710763
+300,3,Tasks and Resources Distributions,0.61106938
+300,5,Arrival Calendar,0.091402739
+300,5,Arrival Distribution,0.137993515
+300,5,Gateways,0.285527049
+300,5,Resource Calendars,0.576439305
+300,5,Resource Numbers,0.079926881
+300,5,Tasks and Resources Distributions,1.088540994
